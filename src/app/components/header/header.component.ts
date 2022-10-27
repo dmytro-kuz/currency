@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { first } from 'rxjs';
 import { HeaderService } from './header.service';
 import { Rate } from 'src/app/shared/interfaces/rate';
 
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.headerService
       .getExchangeRate()
-      .pipe(tap())
+      .pipe(first())
       .subscribe((rates) => {
         rates.forEach((rate: any) => {
           if (rate.ccy === 'USD') {

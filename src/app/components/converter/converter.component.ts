@@ -3,13 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-converter',
   templateUrl: './converter.component.html',
-  styleUrls: ['./converter.component.css']
+  styleUrls: ['./converter.component.scss'],
 })
 export class ConverterComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
+  foods: any[] = [
+    { value: 'usd', viewValue: 'USD' },
+    { value: 'eur', viewValue: 'EUR' },
+    { value: 'uah', viewValue: 'UAH' },
+  ];
 }
