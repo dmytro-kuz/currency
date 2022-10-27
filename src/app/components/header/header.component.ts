@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { tap, timeout } from 'rxjs';
+import { CurrencyService } from '../currency.service';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  usd?: { buy: any; sale: any };
+  eur?: { buy: any; sale: any };
 
-  ngOnInit() {}
+  constructor(private currencyService: CurrencyService) {}
+
+  ngOnInit() {
+    this.currencyService
+      .getExchangeRate()
+      .pipe(tap())
+      .subscribe((rates) => {
+        rates.forEach((rate: any) => {
+          if (rate.ccy === 'USD') {
+            this.usd = {
+              buy: Number(rate.buy).toFixed(2),
+              sale: Number(rate.sale).toFixed(2),
+            };
+          }
+          if (rate.ccy === 'EUR') {
+            this.eur = {
+              buy: Number(rate.buy).toFixed(2),
+              sale: Number(rate.sale).toFixed(2),
+            };
+          }
+        });
+      });
+  }
 }

@@ -7,9 +7,13 @@
           <img src="../../../assets/flag-eu.jpg" alt="eu" />
         </div>
 
-        <div class="euro-currency">
-          <div class="euro-buy"><span class="buy">Купівля:</span> 38.39</div>
-          <div class="euro-sell"><span class="sell">Продаж:</span> 38.39</div>
+        <div *ngIf="eur" class="euro-currency">
+          <div class="euro-buy">
+            <span class="buy">Купівля:</span> {{ eur.buy }}
+          </div>
+          <div class="euro-sell">
+            <span class="sell">Продаж:</span> {{ eur.sale }}
+          </div>
         </div>
       </div>
       <div class="currency">
@@ -17,9 +21,13 @@
           <img src="../../../assets/flag-usa.jfif" alt="usa" />
         </div>
 
-        <div class="dollar-currency">
-          <div class="dollar-buy"><span class="buy">Купівля:</span> 38.39</div>
-          <div class="dollar-sell"><span class="sell">Продаж:</span> 38.39</div>
+        <div *ngIf="usd" class="dollar-currency">
+          <div class="dollar-buy">
+            <span class="buy">Купівля:</span> {{ usd.buy }}
+          </div>
+          <div class="dollar-sell">
+            <span class="sell">Продаж:</span> {{ usd.sale }}
+          </div>
         </div>
       </div>
     </div>
