@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { tap, timeout } from 'rxjs';
 import { CurrencyService } from '../currency.service';
+import { Rate } from 'src/app/shared/interfaces/rate';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,8 @@ import { CurrencyService } from '../currency.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  usd?: { buy: any; sale: any };
-  eur?: { buy: any; sale: any };
+  usd?: Rate;
+  eur?: Rate;
 
   constructor(private currencyService: CurrencyService) {}
 

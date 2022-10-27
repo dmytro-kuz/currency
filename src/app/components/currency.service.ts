@@ -1,15 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiService } from '../shared/service/api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrencyService {
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
   getExchangeRate(): Observable<any> {
-    return this.http.get<any>(
-      'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
-    );
+    return this.apiService.get();
   }
 }
