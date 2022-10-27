@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, timeout } from 'rxjs';
-import { CurrencyService } from '../currency.service';
+import { tap } from 'rxjs';
+import { HeaderService } from './header.service';
 import { Rate } from 'src/app/shared/interfaces/rate';
 
 @Component({
@@ -12,10 +12,10 @@ export class HeaderComponent implements OnInit {
   usd?: Rate;
   eur?: Rate;
 
-  constructor(private currencyService: CurrencyService) {}
+  constructor(private headerService: HeaderService) {}
 
   ngOnInit() {
-    this.currencyService
+    this.headerService
       .getExchangeRate()
       .pipe(tap())
       .subscribe((rates) => {

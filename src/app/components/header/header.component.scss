@@ -5,37 +5,33 @@ mat-toolbar {
   display: flex;
   justify-content: center;
 
-  .container {
-    width: 1200px;
+
+
+  .header-tittle {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-currency {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 
-    .header-tittle {
-      font-size: 1rem;
+
+    .currency {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 400px;
+
+      .euro-currency {
+        margin-right: 1.5rem;
+      }
     }
 
-    .header-currency {
-      display: flex;
-      justify-content: space-between;
-
-
-      .currency {
-        display: flex;
-        max-width: 400px;
-
-        .euro-currency {
-          margin-right: 1.5rem;
-        }
-      }
-
-      img {
-        width: 55px;
-        margin-right: 1rem;
-      }
+    img {
+      width: 55px;
+      margin-right: 1rem;
     }
   }
+
 }

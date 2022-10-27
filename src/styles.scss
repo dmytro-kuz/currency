@@ -10,3 +10,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #fff;
 }
+
+.container {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
