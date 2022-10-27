@@ -1,0 +1,35 @@
+<mat-toolbar>
+  <div class="container">
+    <span class="header-tittle"><h1>Курс валют</h1></span>
+    <div class="header-currency">
+      <div class="currency">
+        <div class="euro">
+          <img src="../../../assets/flag-eu.jpg" alt="eu" />
+        </div>
+
+        <div *ngIf="eur" class="euro-currency">
+          <div class="euro-buy">
+            <span class="buy">Купівля:</span> {{ eur.buy }}
+          </div>
+          <div class="euro-sell">
+            <span class="sell">Продаж:</span> {{ eur.sale }}
+          </div>
+        </div>
+      </div>
+      <div class="currency">
+        <div class="dollar">
+          <img src="../../../assets/flag-usa.jfif" alt="usa" />
+        </div>
+
+        <div *ngIf="usd" class="dollar-currency">
+          <div class="dollar-buy">
+            <span class="buy">Купівля:</span> {{ usd.buy }}
+          </div>
+          <div class="dollar-sell">
+            <span class="sell">Продаж:</span> {{ usd.sale }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
