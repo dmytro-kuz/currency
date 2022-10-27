@@ -1,0 +1,41 @@
+mat-toolbar {
+  height: 100px;
+  background-color: #2F4F4F;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-tittle {
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-currency {
+      display: flex;
+      justify-content: space-between;
+
+
+      .currency {
+        display: flex;
+        max-width: 400px;
+
+        .euro-currency {
+          margin-right: 1.5rem;
+        }
+      }
+
+      img {
+        width: 55px;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
