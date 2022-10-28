@@ -1,18 +1,24 @@
 <div class="converter-container">
   <h2>Конвертер валют</h2>
-  <form class="example-form">
+  <form *ngIf="currencyForm" [formGroup]="currencyForm" class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Введіть суму</mat-label>
-      <input matInput type="number" />
+      <input
+        formControlName="firstInput"
+        (input)="directConversion($event)"
+        matInput
+        type="number"
+        [value]="firstInput"
+        min="0.1"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Виберіть валюту</mat-label>
-      <mat-select>
-        <mat-option></mat-option>
-        <mat-option [value]="option.value" *ngFor="let option of foods">{{
-          option.viewValue
-        }}</mat-option>
+      <mat-select formControlName="firstSelect" [(value)]="currency[0]">
+        <mat-option [value]="option" *ngFor="let option of currency">
+          {{ option }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -20,16 +26,21 @@
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Введіть суму</mat-label>
-      <input matInput type="number" />
+      <input
+        (input)="reversConversion($event)"
+        formControlName="secondInput"
+        matInput
+        type="number"
+        [value]="secondInput"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Виберіть валюту</mat-label>
-      <mat-select>
-        <mat-option></mat-option>
-        <mat-option [value]="option.value" *ngFor="let option of foods">{{
-          option.viewValue
-        }}</mat-option>
+      <mat-select formControlName="secondSelect">
+        <mat-option [value]="option" *ngFor="let option of currency">
+          {{ option }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </form>

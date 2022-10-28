@@ -2,10 +2,24 @@
   color: #000;
   max-width: 1200px;
   padding: 1rem;
-  margin-top: 1rem;
+  margin: 1.5rem auto;
 
   h2 {
     font-size: 32px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .example-full-width {
+    margin-right: 0.3rem;
+  }
+
+  mat-icon {
+    padding: 1rem 2rem;
+  }
+
+  .example-form {
     display: flex;
     justify-content: center;
   }
