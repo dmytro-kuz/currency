@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first, Observable } from 'rxjs';
+import { first } from 'rxjs';
 import { CurrencyService } from '../currency.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,9 +15,8 @@ export class ConverterComponent implements OnInit {
   ) {}
   currency: string[] = this.currencyService.currency;
   rate: any;
-  firstInput: any;
-  secondInput: any;
   currencyForm?: FormGroup;
+  rates: any = { USD: 0, EUR: 0, BTC: 0 };
 
   ngOnInit() {
     this.currencyService
@@ -25,28 +24,115 @@ export class ConverterComponent implements OnInit {
       .pipe(first())
       .subscribe((data) => {
         this.rate = data;
+        this.rates.USD = this.rate[0].buy;
+        this.rates.EUR = this.rate[1].buy;
+        this.rates.BTC = this.rate[2].buy * this.rate[0].buy;
         this.currencyForm?.patchValue({
-          secondInput: [Number(data[0].sale).toFixed(2)],
+          secondInput: [Number(data[0].buy).toFixed(2)],
         });
       });
-
     this.formCreation();
   }
 
   formCreation() {
-    console.log(this.rate);
-
     this.currencyForm = this.formBuilder.group({
       firstInput: [1],
-      firstSelect: ['UAH'],
+      firstSelect: ['USD'],
       secondInput: [],
-      secondSelect: ['USD'],
+      secondSelect: ['UAH'],
     });
   }
 
-  directConversion(input: any) {
-    console.log('input', input.target.value);
+  directConversion() {
+    if (this.currencyForm?.value.secondSelect === 'UAH') {
+      this.currencyForm.patchValue({
+        secondInput: [
+          Number(
+            this.currencyForm.value.firstInput *
+              this.rates[this.currencyForm?.value.firstSelect]
+          ).toFixed(2),
+        ],
+      });
+    }
+    if (
+      this.currencyForm?.value.firstSelect ===
+      this.currencyForm?.value.secondSelect
+    ) {
+      this.currencyForm?.patchValue({
+        secondInput: [this.currencyForm.value.firstInput],
+      });
+    }
+    if (this.currencyForm?.value.secondSelect !== 'UAH') {
+      if (this.currencyForm?.value.firstSelect === 'UAH') {
+        this.currencyForm?.patchValue({
+          secondInput: [
+            Number(
+              this.currencyForm.value.firstInput /
+                this.rates[this.currencyForm?.value.secondSelect]
+            ).toFixed(2),
+          ],
+        });
+      } else {
+        this.currencyForm?.patchValue({
+          secondInput: [
+            Number(
+              (this.currencyForm.value.firstInput *
+                this.rates[this.currencyForm?.value.firstSelect]) /
+                this.rates[this.currencyForm?.value.secondSelect]
+            ).toFixed(2),
+          ],
+        });
+      }
+    }
   }
 
-  reversConversion(input: any) {}
+  reverseConversion() {
+    if (this.currencyForm?.value.firstSelect === 'UAH') {
+      this.currencyForm.patchValue({
+        firstInput: [
+          Number(
+            this.currencyForm.value.secondInput *
+              this.rates[this.currencyForm?.value.secondSelect]
+          ).toFixed(2),
+        ],
+      });
+    }
+    if (
+      this.currencyForm?.value.firstSelect ===
+      this.currencyForm?.value.secondSelect
+    ) {
+      this.currencyForm?.patchValue({
+        firstInput: [this.currencyForm.value.secondInput],
+      });
+    }
+    if (this.currencyForm?.value.firstSelect !== 'UAH') {
+      if (this.currencyForm?.value.secondSelect === 'UAH') {
+        this.currencyForm?.patchValue({
+          firstInput: [
+            Number(
+              this.currencyForm.value.secondInput /
+                this.rates[this.currencyForm?.value.firstSelect]
+            ).toFixed(2),
+          ],
+        });
+      } else {
+        this.currencyForm?.patchValue({
+          firstInput: [
+            Number(
+              (this.currencyForm.value.secondInput *
+                this.rates[this.currencyForm?.value.secondSelect]) /
+                this.rates[this.currencyForm?.value.firstSelect]
+            ).toFixed(2),
+          ],
+        });
+      }
+    }
+  }
+
+  inverseCurrency() {
+    this.currencyForm?.patchValue({
+      firstInput: [this.currencyForm?.value.secondInput],
+    });
+    this.directConversion();
+  }
 }

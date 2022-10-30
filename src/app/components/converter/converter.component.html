@@ -5,39 +5,50 @@
       <mat-label>Введіть суму</mat-label>
       <input
         formControlName="firstInput"
-        (input)="directConversion($event)"
+        (input)="directConversion()"
         matInput
         type="number"
-        [value]="firstInput"
         min="0.1"
       />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Виберіть валюту</mat-label>
-      <mat-select formControlName="firstSelect" [(value)]="currency[0]">
+      <mat-select
+        (selectionChange)="directConversion()"
+        formControlName="firstSelect"
+      >
         <mat-option [value]="option" *ngFor="let option of currency">
           {{ option }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-icon>swap_horiz</mat-icon>
+    <button
+      (click)="inverseCurrency()"
+      class="mat-button"
+      mat-button
+      color="primary"
+    >
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Введіть суму</mat-label>
       <input
-        (input)="reversConversion($event)"
+        (input)="reverseConversion()"
         formControlName="secondInput"
         matInput
         type="number"
-        [value]="secondInput"
       />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Виберіть валюту</mat-label>
-      <mat-select formControlName="secondSelect">
+      <mat-select
+        (selectionChange)="reverseConversion()"
+        formControlName="secondSelect"
+      >
         <mat-option [value]="option" *ngFor="let option of currency">
           {{ option }}
         </mat-option>
