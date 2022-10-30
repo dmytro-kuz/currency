@@ -1,4 +1,4 @@
-# CurrencyConverter
+# Currency Converter
 
 test-task for itop1000
 
