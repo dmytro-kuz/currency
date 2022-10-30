@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, timeout } from 'rxjs';
+import { first } from 'rxjs';
 import { CurrencyService } from '../currency.service';
 import { Rate } from 'src/app/shared/interfaces/rate';
 
@@ -17,9 +17,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.currencyService
       .getExchangeRate()
-      .pipe(tap())
+      .pipe(first())
       .subscribe((rates) => {
+        console.log(rates);
+
         rates.forEach((rate: any) => {
+          this.currencyService.currency.push(rate.ccy);
           if (rate.ccy === 'USD') {
             this.usd = {
               buy: Number(rate.buy).toFixed(2),
