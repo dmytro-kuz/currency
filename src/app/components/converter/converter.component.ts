@@ -13,8 +13,7 @@ export class ConverterComponent implements OnInit {
     private currencyService: CurrencyService,
     private formBuilder: FormBuilder
   ) {}
-  currency: string[] = this.currencyService.currency;
-  rate: any;
+  currencyList: string[] = this.currencyService.currencyList;
   currencyForm?: FormGroup;
   rates: any = { USD: 0, EUR: 0, BTC: 0 };
 
@@ -23,10 +22,9 @@ export class ConverterComponent implements OnInit {
       .getExchangeRate()
       .pipe(first())
       .subscribe((data) => {
-        this.rate = data;
-        this.rates.USD = this.rate[0].buy;
-        this.rates.EUR = this.rate[1].buy;
-        this.rates.BTC = this.rate[2].buy * this.rate[0].buy;
+        this.rates.USD = data[0].buy;
+        this.rates.EUR = data[1].buy;
+        this.rates.BTC = data[2].buy * data[0].buy;
         this.currencyForm?.patchValue({
           secondInput: [Number(data[0].buy).toFixed(2)],
         });

@@ -1,6 +1,8 @@
 <mat-toolbar>
   <div class="container">
-    <span class="header-tittle"><h1>Курс Валют</h1></span>
+    <h1 class="header-tittle">
+      Курс Валют <span> {{ date | date: "dd.MM.yyyy" }}</span>
+    </h1>
     <div class="header-currency">
       <app-header-rate [currency]="eur" [img]="'flag-eu.jpg'"></app-header-rate>
       <app-header-rate

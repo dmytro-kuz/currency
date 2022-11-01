@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/shared/service/api.service';
 export class CurrencyService {
   constructor(private apiService: ApiService) {}
 
-  currency: string[] = ['UAH'];
+  currencyList: string[] = ['UAH'];
 
   getExchangeRate(): Observable<any> {
     return this.apiService.get();

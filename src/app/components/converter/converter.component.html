@@ -1,29 +1,45 @@
 <div class="converter-container">
   <h2>Конвертер валют</h2>
   <form *ngIf="currencyForm" [formGroup]="currencyForm" class="example-form">
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Введіть суму</mat-label>
-      <input
-        formControlName="firstInput"
-        (input)="directConversion()"
-        matInput
-        type="number"
-        min="0.1"
-      />
-    </mat-form-field>
+    <ng-template
+      #defaultFiled
+      let-firstControlName="firstControlName"
+      let-secondControlName="secondControlName"
+    >
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Введіть суму</mat-label>
+        <input
+          formControlName="{{ firstControlName }}"
+          (input)="directConversion()"
+          matInput
+          type="number"
+          min="0.1"
+        />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Виберіть валюту</mat-label>
-      <mat-select
-        (selectionChange)="directConversion()"
-        formControlName="firstSelect"
-      >
-        <mat-option [value]="option" *ngFor="let option of currency">
-          {{ option }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Виберіть валюту</mat-label>
+        <mat-select
+          (selectionChange)="directConversion()"
+          formControlName="{{ secondControlName }}"
+        >
+          <mat-option [value]="option" *ngFor="let option of currencyList">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
 
+    <ng-container
+      *ngTemplateOutlet="
+        defaultFiled;
+        context: {
+          firstControlName: 'firstInput',
+          secondControlName: 'firstSelect'
+        }
+      "
+    >
+    </ng-container>
     <button
       (click)="inverseCurrency()"
       class="mat-button"
@@ -33,26 +49,14 @@
       <mat-icon>swap_horiz</mat-icon>
     </button>
 
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Введіть суму</mat-label>
-      <input
-        (input)="reverseConversion()"
-        formControlName="secondInput"
-        matInput
-        type="number"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Виберіть валюту</mat-label>
-      <mat-select
-        (selectionChange)="reverseConversion()"
-        formControlName="secondSelect"
-      >
-        <mat-option [value]="option" *ngFor="let option of currency">
-          {{ option }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <ng-container
+      *ngTemplateOutlet="
+        defaultFiled;
+        context: {
+          firstControlName: 'secondInput',
+          secondControlName: 'secondSelect'
+        }
+      "
+    ></ng-container>
   </form>
 </div>
