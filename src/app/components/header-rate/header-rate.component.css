@@ -1,0 +1,11 @@
+.currency {
+  display: flex;
+  max-width: 400px;
+  align-items: center;
+}
+
+img {
+  width: 70px;
+  display: flex;
+  margin-right: 1rem;
+}

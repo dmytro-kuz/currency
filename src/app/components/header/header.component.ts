@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
-import { CurrencyService } from '../currency.service';
+import { CurrencyService } from '../services/currency.service';
 import { Rate } from 'src/app/shared/interfaces/rate';
 
 @Component({

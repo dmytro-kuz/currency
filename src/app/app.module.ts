@@ -12,10 +12,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { ConverterComponent } from './components/converter/converter.component';
+import { HeaderRateComponent } from './components/header-rate/header-rate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ConverterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ConverterComponent,
+    HeaderRateComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
