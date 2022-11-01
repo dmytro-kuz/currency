@@ -126,8 +126,11 @@ export class ConverterComponent implements OnInit {
   }
 
   inverseCurrency() {
+    const firstSelect = this.currencyForm?.get('firstSelect')?.value;
+    const secondSelect = this.currencyForm?.get('secondSelect')?.value;
     this.currencyForm?.patchValue({
-      firstInput: [this.currencyForm?.value.secondInput],
+      firstSelect: secondSelect,
+      secondSelect: firstSelect,
     });
     this.directConversion();
   }
