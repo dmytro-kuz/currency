@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderInterceptorProvider } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [LoaderInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
