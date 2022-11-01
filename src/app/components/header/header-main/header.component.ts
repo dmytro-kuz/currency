@@ -21,8 +21,6 @@ export class HeaderComponent implements OnInit {
       .pipe(first())
       .subscribe((rates) => {
         rates.forEach((rate: any) => {
-          console.log(rate);
-
           this.currencyService.currencyList.push(rate.ccy);
           if (rate.ccy === 'USD') {
             this.usd = {
