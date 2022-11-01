@@ -41,7 +41,7 @@ export class ConverterComponent implements OnInit {
     });
   }
 
-  generateInput(a = 1, b = 1, c = 1) {
+  generateInput(a: number = 1, b: number = 1, c: number = 1): string {
     return Number((a * b) / c).toFixed(2);
   }
 
@@ -113,13 +113,13 @@ export class ConverterComponent implements OnInit {
     }
   }
 
-  patchSecondInput(input: any) {
+  patchSecondInput(input: string) {
     this.currencyForm?.patchValue({
       secondInput: input,
     });
   }
 
-  patchFirstInput(input: any) {
+  patchFirstInput(input: string) {
     this.currencyForm?.patchValue({
       firstInput: input,
     });
